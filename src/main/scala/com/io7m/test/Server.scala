@@ -37,7 +37,7 @@ akka.remote.netty.ssl.enabled-algorithms   = ["TLS_RSA_WITH_AES128_CBC_SHA"]
 """)
 
   private val system =
-    ActorSystem("test-system", this.config)
+    ActorSystem("test-server", this.config)
 
   private val act =
     this.system.actorOf(Props[ServerActor], "server")
