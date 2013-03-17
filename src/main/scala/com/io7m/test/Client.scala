@@ -23,7 +23,7 @@ final class ClientActor extends Actor with ActorLogging {
   act ! "Hello"
 
   override def receive : PartialFunction[Any, Unit] = LoggingReceive {
-    case e : DeadLetter => throw new IOException(e.toString)
+    case e : DeadLetter => this.log.error("Dead letter: " + e.toString)
     case m              => this.unhandled(m)
   }
 
