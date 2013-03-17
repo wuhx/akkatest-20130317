@@ -7,6 +7,7 @@ import akka.actor.ActorLogging
 import akka.actor.Actor
 import akka.actor.DeadLetter
 import java.io.IOException
+import akka.event.LoggingReceive
 
 final class ClientActor extends Actor with ActorLogging {
 
@@ -21,9 +22,9 @@ final class ClientActor extends Actor with ActorLogging {
 
   act ! "Hello"
 
-  override def receive : PartialFunction[Any, Unit] = {
-    case DeadLetter => throw new IOException("DEAD LETTER RECEIVED")
-    case m          => this.unhandled(m)
+  override def receive : PartialFunction[Any, Unit] = LoggingReceive {
+    case e : DeadLetter => throw new IOException(e.toString)
+    case m              => this.unhandled(m)
   }
 
 }
@@ -32,7 +33,7 @@ final class Client {
 
   private val config = ConfigFactory.parseString("""
 akka.loglevel                              = DEBUG
-akka.log-config-on-start                   = off
+akka.log-config-on-start                   = on
 akka.actor.provider                        = "akka.remote.RemoteActorRefProvider"
 akka.actor.serialize-message               = on
 akka.actor.debug.lifecycle                 = on
@@ -48,7 +49,7 @@ akka.remote.netty.ssl.key-store            = tls/client/key_store.jks
 akka.remote.netty.ssl.key-store-password   = 12345678
 akka.remote.netty.ssl.trust-store          = tls/client/trust_store.jks
 akka.remote.netty.ssl.trust-store-password = 12345678
-akka.remote.netty.ssl.enabled-algorithms   = ["TLS_RSA_WITH_AES_128_CBC_SHA"]
+akka.remote.netty.ssl.enabled-algorithms   = ["TLS_RSA_WITH_AES_256_CBC_SHA"]
 """)
 
   private val system =

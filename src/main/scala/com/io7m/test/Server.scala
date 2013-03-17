@@ -5,18 +5,21 @@ import com.typesafe.config.ConfigFactory
 import akka.actor.Props
 import akka.actor.ActorLogging
 import akka.actor.Actor
+import akka.event.LoggingReceive
 
 final class ServerActor extends Actor with ActorLogging {
-  override def receive : PartialFunction[Any, Unit] = {
+
+  override def receive : PartialFunction[Any, Unit] = LoggingReceive {
     case m => this.unhandled(m)
   }
+
 }
 
 final class Server {
 
   private val config = ConfigFactory.parseString("""
 akka.loglevel                              = DEBUG
-akka.log-config-on-start                   = off
+akka.log-config-on-start                   = on
 akka.actor.provider                        = "akka.remote.RemoteActorRefProvider"
 akka.actor.serialize-message               = on
 akka.actor.debug.lifecycle                 = on
@@ -32,7 +35,7 @@ akka.remote.netty.ssl.key-store            = tls/server/key_store.jks
 akka.remote.netty.ssl.key-store-password   = 12345678
 akka.remote.netty.ssl.trust-store          = tls/server/trust_store.jks
 akka.remote.netty.ssl.trust-store-password = 12345678
-akka.remote.netty.ssl.enabled-algorithms   = ["TLS_RSA_WITH_AES_128_CBC_SHA"]
+akka.remote.netty.ssl.enabled-algorithms   = ["TLS_RSA_WITH_AES_256_CBC_SHA"]
 """)
 
   private val system =
