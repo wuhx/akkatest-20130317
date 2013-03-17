@@ -16,8 +16,7 @@ final class Server {
 
   private val config = ConfigFactory.parseString("""
 akka.loglevel                              = DEBUG
-akka.log-config-on-start                   = on
-akka.event-handlers                        = ["com.io7m.test.LogListener"]
+akka.log-config-on-start                   = off
 akka.actor.provider                        = "akka.remote.RemoteActorRefProvider"
 akka.actor.serialize-message               = on
 akka.actor.debug.lifecycle                 = on
@@ -33,7 +32,7 @@ akka.remote.netty.ssl.key-store            = tls/server/key_store.jks
 akka.remote.netty.ssl.key-store-password   = 12345678
 akka.remote.netty.ssl.trust-store          = tls/server/trust_store.jks
 akka.remote.netty.ssl.trust-store-password = 12345678
-akka.remote.netty.ssl.enabled-algorithms   = ["TLS_RSA_WITH_AES128_CBC_SHA"]
+akka.remote.netty.ssl.enabled-algorithms   = ["TLS_RSA_WITH_AES_128_CBC_SHA"]
 """)
 
   private val system =
