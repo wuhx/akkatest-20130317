@@ -8,7 +8,7 @@ import akka.actor.Actor
 
 final class ClientActor extends Actor with ActorLogging {
 
-  val addr = "akka://test-client@127.0.0.1:9000/user/server"
+  val addr = "akka://test-server@127.0.0.1:9000/user/server"
 
   this.log.debug("Looking up " + addr)
 
