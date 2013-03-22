@@ -44,12 +44,12 @@ akka.remote.transport                      = "akka.remote.netty.NettyRemoteTrans
 akka.remote.netty.hostname                 = "127.0.0.1"
 akka.remote.netty.port                     = 9001
 akka.remote.netty.ssl.enable               = on
-akka.remote.netty.ssl.protocol             = "TLSv1"
+# akka.remote.netty.ssl.protocol             = "TLSv1"
 akka.remote.netty.ssl.key-store            = tls/client/key_store.jks
 akka.remote.netty.ssl.key-store-password   = 12345678
 akka.remote.netty.ssl.trust-store          = tls/client/trust_store.jks
 akka.remote.netty.ssl.trust-store-password = 12345678
-akka.remote.netty.ssl.enabled-algorithms   = ["TLS_RSA_WITH_AES_256_CBC_SHA"]
+# akka.remote.netty.ssl.enabled-algorithms   = ["TLS_RSA_WITH_AES_256_CBC_SHA"]
 """)
 
   private val system =
