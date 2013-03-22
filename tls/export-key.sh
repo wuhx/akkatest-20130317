@@ -11,7 +11,7 @@ info()
   echo "setup: info: $1" 1>&2
 }
 
-export()
+export_key()
 {
   info "exporting private key"
 
@@ -27,7 +27,9 @@ export()
     "${NAME}/key.pem"
 }
 
-export "inventory_server"
-export "inventory_client"
-export "entitlements_server"
-export "store_server"
+if [ $# -ne 1 ]
+then
+  fatal "usage: name"
+fi
+
+export_key "$1"

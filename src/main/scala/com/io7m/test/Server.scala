@@ -35,7 +35,7 @@ akka.remote.netty.ssl.key-store            = tls/server/key_store.jks
 akka.remote.netty.ssl.key-store-password   = 12345678
 akka.remote.netty.ssl.trust-store          = tls/server/trust_store.jks
 akka.remote.netty.ssl.trust-store-password = 12345678
-akka.remote.netty.ssl.enabled-algorithms   = ["TLS_RSA_WITH_AES_256_CBC_SHA"]
+# akka.remote.netty.ssl.enabled-algorithms   = ["TLS_RSA_WITH_AES_256_CBC_SHA"]
 """)
 
   private val system =
